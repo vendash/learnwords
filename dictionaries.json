@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Glossary Unit 2.1",
+        "resourceFile": "words21.json"
+    },
+    {
+        "title": "Glossary Unit 2.2",
+        "resourceFile": "words22.json"
+    },
+    {
+        "title": "Glossary Unit 2.3",
+        "resourceFile": "words23.json"
+    },
+    {
+        "title": "Glossary Unit 4.1",
+        "resourceFile": "words41.json"
+    },
+    {
+        "title": "Glossary Unit 4.2",
+        "resourceFile": "words42.json"
+    }
+]
