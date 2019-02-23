@@ -1,2 +1,3 @@
 # learnwords
-learnwords
+
+Learning purpose only
