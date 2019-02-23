@@ -78,6 +78,22 @@ var uiController = (function() {
             document.querySelector(DOMstrings.answer).value = "";
             document.querySelector(DOMstrings.answer).focus();
         },
+
+        showInfo: function(text, type) {
+            output = `<div id="infoBoxElement" class="alert alert-${type} mt-2" role="alert">
+            ${text}
+            <button id ="okBtn" type="button" class="btn btn-${type}">Info</button>               
+         
+            </div>`
+              document.querySelector('.info-box').innerHTML = output;
+              document.getElementById('okBtn').focus();         
+        },
+
+        removeInfo: function() {
+            document.querySelector('#infoBoxElement').remove();
+            document.getElementById('checkBtn').disabled = false;
+
+        },
         
         getDOMStrings: function() {
             return DOMstrings;
@@ -95,6 +111,9 @@ var controller = (function(wordCtrl, UICtrl) {
         var DOM = UICtrl.getDOMStrings();
 
         document.querySelector(DOM.form).addEventListener('submit', checkWord);
+        
+        
+
         document.getElementById(DOM.settings).addEventListener('click', function() {console.log("settings clicked")})
         document.getElementById('voiceSelect').addEventListener('change', function() {
             console.log(this.options[this.selectedIndex].getAttribute('data-name'));
@@ -107,6 +126,10 @@ var controller = (function(wordCtrl, UICtrl) {
             localStorage.setItem('voices', this.selectedIndex)
         });
 
+        document.querySelector('.info-box').addEventListener('click', giveNextWorld)
+
+
+ 
 
         document.getElementById('dicts').addEventListener('click', function(e) {
             fetch(e.target.id)
@@ -128,6 +151,13 @@ var controller = (function(wordCtrl, UICtrl) {
                     console.log(err);
                 })
         })
+
+    }
+
+    function giveNextWorld() {
+        UICtrl.removeInfo();
+        nextWord();
+        document.getElementById('checkBtn').disabled = false;
     }
 
     function getDictionaries() {
@@ -143,8 +173,7 @@ var controller = (function(wordCtrl, UICtrl) {
                 console.log(output);
                 document.getElementById('dicts').innerHTML = output;
             })
-    }
-    
+    }  
     
     function populateVoiceList() {
         if(typeof speechSynthesis === 'undefined') {
@@ -169,21 +198,22 @@ var controller = (function(wordCtrl, UICtrl) {
 
     var checkWord = function(e) {
         console.log("Check word button pressed");
-
+        document.getElementById('checkBtn').disabled = true;
         var answer = UICtrl.getInput();
         wordCtrl.speakWorld(word.english);
         if (answer===word.english) {
-            alert("Helyes válasz");
+            UICtrl.showInfo("Helyes válasz!", 'info');
+            // alert("Helyes válasz");
             word.weight++;
             if (word.weight === 3) {
                 wordCtrl.removeWord(word.id);
             }
         } else {
-            alert("Rossz válasz, a helyes válasz: " + word.english);
+            UICtrl.showInfo("Rossz válasz, a helyes válasz: " + word.english, 'warning');
+            // alert("Rossz válasz, a helyes válasz: " + word.english);
             word.weight--;
         }
         
-        nextWord();
 
         e.preventDefault();
         
@@ -195,7 +225,6 @@ var controller = (function(wordCtrl, UICtrl) {
             UICtrl.showWord(word);
             console.log(word);
         } else alert('Minden szót megtanultál');
-        
     }
 
     return {

@@ -43,19 +43,28 @@
     <div class="conainter">
         <div class="row">
             <div class="col-md-6 mx-auto">
-                    <div class="card card-body text-center mt-5">
-                            <h4 class="question_label">Please, choose a dictionary</h4>
-                            <form id="word-form">
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <label for="answer">Enter your answere here:</label>
-                                        <input type="text" id="answer" class="answer form-control">
-                                        <small class="form-text text-muted" id="answerHelp">- 0 -</small>
-                                    </div>
-                                </div>
-                                <input type="submit" value="Ellenőrzés" class="btn check-btn">                
-                            </form>
-                        </div>
+              <div class="card card-body text-center mt-5">
+                <h4 class="question_label">Please, choose a dictionary</h4>
+                  <form id="word-form">
+                    <div class="form-group">
+                    <div class="form-group">
+                      <label for="answer">Enter your answere here:</label>
+                      <input type="text" id="answer" class="answer form-control" autocomplete="off">
+                      <small class="form-text text-muted" id="answerHelp">- 0 -</small>
+                    </div>
+                  </div>
+                    <input type="submit" id="checkBtn" value="Ellenőrzés" class="btn check-btn">                
+                  </form>
+
+              </div>
+              <form id="info-box">
+                <div class="info-box">
+
+               </div>
+              </form>  
+              </div>
+
+            
             </div>
         </div>
 
