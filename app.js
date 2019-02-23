@@ -96,7 +96,7 @@ var uiController = (function() {
             output = `
                 <div id="infoBoxElement" class="alert alert-${type} mt-2" role="alert">
                     ${text}
-                    <button id ="okBtn" type="button" class="btn btn-${type}">Info</button>               
+                    <button id ="okBtn" type="button" class="btn btn-${type}">Ok</button>               
                 </div>`
               document.querySelector('.info-box').innerHTML = output;
               document.getElementById('okBtn').focus();         
