@@ -18,5 +18,9 @@
     {
         "title": "Glossary Unit 4.2",
         "resourceFile": "words42.json"
+    },
+    {
+        "title": "Test",
+        "resourceFile": "wordtest.json"
     }
 ]

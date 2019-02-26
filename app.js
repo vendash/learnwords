@@ -73,7 +73,9 @@ var uiController = (function() {
         form: '#word-form',
         settings: 'settings',
         selected: 'selected',
-        currentProgress: '#currentProgress'
+        currentWordWeight: '#currentWordWeight',
+        dictProgressBar: '#dictProgressBar',
+        progressBarLabel: '#progressBarLabel'
     }
 
     return {
@@ -88,8 +90,16 @@ var uiController = (function() {
             document.querySelector(DOMstrings.answer).focus();
         },
 
-        updateProgess(original, current) {
-            document.querySelector(DOMstrings.currentProgress).textContent = original + " / " + current;
+        updateProgess(current, original) {
+            let percentage = Math.round(current / original*100);
+            if (percentage <3) percentage = 3 //Bootstrap recommended min. value
+            document.querySelector(DOMstrings.dictProgressBar).style = `width: ${percentage}%;`;
+
+            document.querySelector(DOMstrings.progressBarLabel).textContent = current + "/" + original;
+        },
+
+        updateWordWeight(value) {
+            document.querySelector(DOMstrings.currentWordWeight).textContent = value;
         },
 
         showInfo: function(text, type) {
@@ -224,6 +234,7 @@ var controller = (function(wordCtrl, UICtrl) {
         word = wordController.askAWord();
         if (word != -1) {
             UICtrl.showWord(word);
+            UICtrl.updateWordWeight(word.weight);
             console.log(word);
         } else alert('Minden szót megtanultál');
     }
