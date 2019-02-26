@@ -78,7 +78,8 @@ var uiController = (function () {
         selected: 'selected',
         currentWordWeight: '#currentWordWeight',
         dictProgressBar: '#dictProgressBar',
-        progressBarLabel: '#progressBarLabel'
+        progressBarLabel: '#progressBarLabel',
+        dictName: '#dictName'
     }
 
     return {
@@ -91,6 +92,10 @@ var uiController = (function () {
             document.querySelector(DOMstrings.questionLabel).textContent = obj.hungarian;
             document.querySelector(DOMstrings.answer).value = "";
             document.querySelector(DOMstrings.answer).focus();
+        },
+
+        setDictionaryName(name) {
+            document.querySelector(DOMstrings.dictName).textContent = name;
         },
 
         updateProgess(current, original) {
@@ -155,6 +160,7 @@ var controller = (function (wordCtrl, UICtrl) {
         });
 
         document.getElementById('dicts').addEventListener('click', function (e) {
+            UICtrl.setDictionaryName(e.target.innerHTML);
             fetch(e.target.id)
                 .then(function (res) {
                     return res.json();
