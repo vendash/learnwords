@@ -24,6 +24,14 @@
         "resourceFile": "words43.json"
     },
     {
+        "title": "Glossary Unit 4.4",
+        "resourceFile": "words44.json"
+    },
+    {
+        "title": "Glossary Unti 4.5",
+        "resourceFile": "words45.json"
+    }
+    {
         "title": "Test",
         "resourceFile": "wordtest.json"
     }
